@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "ChatRoom";
+}
+
+<h1>ChatRoom - @ViewData["RoomName"]</h1>
+
+<div class="container">
+    <div class="row">
+        <h6>Chat here only with room members</h6>
+    </div>
+    <div class="row">
+        <form>
+            <div><input type="hidden" id="groupName" value="@ViewData["RoomName"]"/></div>
+            <div class="form-group">
+                <div class="col-2">Message</div>
+                <div><textarea type="text" id="messageInput" class="form-control" cols="75"></textarea></div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="form-group">
+                <div class="col-6">
+                    <input type="button" id="sendButton" value="Send Message" class="btn btn-info" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList"></ul>
+    </div>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chatRoom.js"></script>
