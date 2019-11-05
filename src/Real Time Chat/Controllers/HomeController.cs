@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Real_Time_Chat.Models;
@@ -14,11 +15,27 @@ namespace Real_Time_Chat.Controllers
             _logger = logger;
         }
 
+        
         public IActionResult Index()
+        {
+
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("NotLogged", "Home");
+            }
+            else
+            {
+                return View();
+            }
+            
+        }
+
+        public IActionResult NotLogged()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult ChatRoom(string roomName)
         {
             ViewData["RoomName"] = roomName;
